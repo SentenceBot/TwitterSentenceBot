@@ -17,8 +17,6 @@ punctuation = []
 adjectives = []
 conjunctions = []
 
-
-canTweet = True
 tweetInterval = 5
 
 with open("subjects.txt", "r") as f:
@@ -47,6 +45,7 @@ print("Logged into Twitter!")
 print("")
 
 def GenerateSentenceAndTweet():
+    canTweet = True
     subjectSeed = randint(0,len(subjects)-1)
     verbSeed = randint(0,len(verbs)-1)
     objectSeed = randint(0,len(objects)-1)
@@ -62,16 +61,16 @@ def GenerateSentenceAndTweet():
     elif(sentenceSeed==2):
         sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
 
-    for minCheck in range(int(60/tweetInterval)):
-        now = datetime.datetime.now()
-        if(now.minute==minCheck*tweetInterval and canTweet):
-            canTweet = False
+    now = datetime.datetime.now().minute
+    for intervalCheck in range(int(60/tweetInterval)):
+        if(now==intervalCheck*tweetInterval and canTweet):
             api.update_status(status=sentence)
             print("Tweeted sentence: " + sentence)
-        if(now.minute!=minCheck):
+            canTweet = False
+        if(now!=intervalCheck*tweetInterval):
             canTweet = True
             
 
 while(True):
     GenerateSentenceAndTweet()
-    time.sleep(1)
+    time.sleep(60)

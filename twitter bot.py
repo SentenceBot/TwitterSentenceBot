@@ -17,7 +17,7 @@ punctuation = []
 adjectives = []
 conjunctions = []
 
-tweetInterval = 5
+tweetInterval = 10
 
 with open("subjects.txt", "r") as f:
         subjects = f.read()
@@ -52,7 +52,7 @@ def GenerateSentenceAndTweet():
     punctuationSeed = randint(0,len(punctuation)-1)
     adjectiveSeed = randint(0,len(adjectives)-1)
     conjunctionSeed = randint(0,len(conjunctions)-1)
-    sentenceSeed = randint(0,2)
+    sentenceSeed = randint(0,3)
 
     if(sentenceSeed==0):
         sentence = subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
@@ -60,12 +60,15 @@ def GenerateSentenceAndTweet():
         sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
     elif(sentenceSeed==2):
         sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==3):
+        sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + " " + subjects[round(subjectSeed/2)] + punctuation[punctuationSeed]
+
 
     now = datetime.datetime.now().minute
     for intervalCheck in range(int(60/tweetInterval)):
         if(now==intervalCheck*tweetInterval and canTweet):
             api.update_status(status=sentence)
-            print("Tweeted sentence: " + sentence)
+            print(str(datetime.datetime.now().hour%12) + ":" + str(datetime.datetime.now().minute) + " | " + "Tweeted sentence: " + sentence)
             canTweet = False
         if(now!=intervalCheck*tweetInterval):
             canTweet = True

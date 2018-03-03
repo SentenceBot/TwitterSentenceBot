@@ -17,7 +17,7 @@ punctuation = []
 adjectives = []
 conjunctions = []
 
-tweetInterval = 10
+tweetInterval = 5
 
 with open("subjects.txt", "r") as f:
         subjects = f.read()

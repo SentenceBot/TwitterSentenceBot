@@ -17,7 +17,7 @@ punctuation = []
 adjectives = []
 conjunctions = []
 
-tweetInterval = 5
+tweetInterval = 10
 
 with open("subjects.txt", "r") as f:
         subjects = f.read()
@@ -53,13 +53,48 @@ def GenerateSentenceAndTweet():
     adjectiveSeed = randint(0,len(adjectives)-1)
     conjunctionSeed = randint(0,len(conjunctions)-1)
     sentenceSeed = randint(0,3)
+    hashtagSeed = randint(0,15)
 
-    if(sentenceSeed==0):
+    if(sentenceSeed==0 and hashtagSeed == 0):
+        sentence = "#" + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==0 and hashtagSeed == 1):
+        sentence = subjects[subjectSeed] + " " + "#" + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==0 and hashtagSeed == 2):
+        sentence = subjects[subjectSeed] + " " + verbs[verbSeed] + " " + "#" + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==0):
         sentence = subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==1 and hashtagSeed == 0):
+        sentence = "#" + adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==1 and hashtagSeed == 1):
+        sentence = adjectives[adjectiveSeed] + " " + "#" + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==1 and hashtagSeed == 2):
+        sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + "#" + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==1 and hashtagSeed == 3):
+        sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + "#" + objects[objectSeed] + punctuation[punctuationSeed]
     elif(sentenceSeed==1):
         sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + punctuation[punctuationSeed]
+    elif(sentenceSeed==2 and hashtagSeed == 0):
+        sentence = "#" + adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==2 and hashtagSeed == 1):
+        sentence = adjectives[adjectiveSeed] + " " + "#" + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==2 and hashtagSeed == 2):
+        sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + "#" + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==2 and hashtagSeed == 3):
+        sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + "#" + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==2 and hashtagSeed == 4):
+        sentence = "#" + adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + "#" + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
     elif(sentenceSeed==2):
         sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==3 and hashtagSeed == 0):
+        sentence = "#" + adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + " " + subjects[round(subjectSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==3 and hashtagSeed == 1):
+        sentence = adjectives[adjectiveSeed] + " " + "#" + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + " " + "#" + subjects[round(subjectSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==3 and hashtagSeed == 2):
+        sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + "#" + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + " " + subjects[round(subjectSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==3 and hashtagSeed == 3):
+        sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + "#" + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + " " + subjects[round(subjectSeed/2)] + punctuation[punctuationSeed]
+    elif(sentenceSeed==3 and hashtagSeed == 4):
+        sentence = "#" + adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + "#" + adjectives[round(adjectiveSeed/2)] + " " + "#" + subjects[round(subjectSeed/2)] + punctuation[punctuationSeed]
     elif(sentenceSeed==3):
         sentence = adjectives[adjectiveSeed] + " " + subjects[subjectSeed] + " " + verbs[verbSeed] + " " + objects[objectSeed] + " " + conjunctions[conjunctionSeed] + " " + adjectives[round(adjectiveSeed/2)] + " " + subjects[round(subjectSeed/2)] + punctuation[punctuationSeed]
 
@@ -75,5 +110,8 @@ def GenerateSentenceAndTweet():
             
 
 while(True):
-    GenerateSentenceAndTweet()
+    try:
+        GenerateSentenceAndTweet()
+    except:
+        pass
     time.sleep(60)
